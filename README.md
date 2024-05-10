@@ -30,9 +30,15 @@ Start writing your story today!
 - Organize your thoughts
 - Access your diary anywhere, anytime
 
-## Install all packages
+## Setup
+
+Install all packages
 
 > npm install
+
+Get your weatherapi.com api key and put it in api/weatherAPI.js
+
+> const apiKey = "YOUR_KEY"; // Replace with your API key
 
 ## Screenshots
 
