@@ -65,6 +65,30 @@ export default function HomeTabs() {
             ),
           }}
         />
+                <Tab.Screen
+          name="mic"
+          component={Add}
+          options={{
+            tabBarLabel: "Add",
+            tabBarIcon: ({ size }) => (
+              <View
+                style={{
+                  top: -30,
+                  width: 70,
+                  height: 70,
+                  borderRadius: 35,
+                  backgroundColor: primarycolor,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  elevation: 10,
+                }}
+              >
+                <Ionicons name="mic" color="#ffffff" size={size} />
+              </View>
+            ),
+          }}
+        />
+        
         <Tab.Screen
           name="settings"
           component={Settings}
