@@ -64,7 +64,7 @@ Get your weatherapi.com api key and put it in api/weatherAPI.js
       <img src="screenshots/4.jpg" width="400px" />&nbsp;&nbsp;&nbsp;
       <img src="screenshots/6.png" width="400px" />&nbsp;&nbsp;&nbsp;
       <img src="screenshots/5.jpg" width="400px" />
-
     </span>
+  </p>
 
    
