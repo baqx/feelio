@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TextInput,
   StyleSheet,
+  Image
 } from "react-native";
 import useStyles from "../constants/styles";
 import AddTopBar from "../components/AddTopBar";
@@ -18,6 +19,8 @@ export default function Add() {
     console.log(`Does "myKey" exist? ${exists}`);
   });
   const css = useStyles();
+  //Voice boolean state
+  const [voiceMode,setVoiceMode]=useState(false)
   const navigation = useNavigation();
   const [text, onChangeTitle] = React.useState("");
   const [value, onChangeText] = React.useState("");
@@ -71,36 +74,51 @@ export default function Add() {
       console.error("Failed to insert Diary:", error);
     }
   };
+  const navigationState = navigation.getState();
+const routeName = navigationState.routes[navigationState.index].name;
+useEffect(()=>{
+  //Checking Tab 
+if(routeName=='mic'){
+setVoiceMode(true)
+}
+},[])
   return (
     <ScrollView style={css.container}>
       <SafeAreaView>
         <AddTopBar acton={submitDiary} />
+        {/* Adding new view when Voice is present */}
+     {!voiceMode?
         <View style={{ padding: 10 }}>
-          <Text style={css.greytext}>Title</Text>
+        <Text style={css.greytext}>Title</Text>
+        <TextInput
+          style={{ ...css.txt, ...styles.title_input }}
+          onChangeText={onChangeTitle}
+          value={text}
+          placeholder="Enter your title"
+          autoFocus={true}
+          placeholderTextColor={txtcolor}
+        />
+        <Text style={css.greytext}>Text</Text>
+        <View>
           <TextInput
-            style={{ ...css.txt, ...styles.title_input }}
-            onChangeText={onChangeTitle}
-            value={text}
-            placeholder="Enter your title"
-            autoFocus={true}
+            editable
+            multiline
+            numberOfLines={10}
+            maxLength={10000}
+            placeholder="How are you feeling?"
+            onChangeText={(text) => onChangeText(text)}
+            value={value}
+            style={{ ...css.txt, padding: 15 }}
+            textAlignVertical="top"
             placeholderTextColor={txtcolor}
           />
-          <Text style={css.greytext}>Text</Text>
-          <View>
-            <TextInput
-              editable
-              multiline
-              numberOfLines={10}
-              maxLength={10000}
-              placeholder="How are you feeling?"
-              onChangeText={(text) => onChangeText(text)}
-              value={value}
-              style={{ ...css.txt, padding: 15 }}
-              textAlignVertical="top"
-              placeholderTextColor={txtcolor}
-            />
-          </View>
         </View>
+      </View>:
+      // Temporary wave.gif extension when mic is pressed
+      <View style={{flex:1,alignSelf:'center',justifyContent:'center',marginVertical:'50%'}}>
+        <Image source={require('../assets/soundBar.gif')}
+        style={{width:50,height:50}} />
+        </View>}
       </SafeAreaView>
     </ScrollView>
   );

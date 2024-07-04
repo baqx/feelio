@@ -11,25 +11,25 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { primarycolor, opacitycolor } = useContext(DContexts);
 
-  useEffect(() => {
-    getCurrentLocation()
-      .then(({ latitude, longitude }) => {
-        fetchWeatherData(latitude, longitude)
-          .then((data) => {
-            setWeatherData(data.current);
-            setLocationData(data.location);
-            setIsLoading(false); // Data has loaded, stop loading
-          })
-          .catch((error) => {
-            console.error("Error fetching weather data:", error);
-            setIsLoading(false); // Stop loading on error
-          });
-      })
-      .catch((error) => {
-        console.error("Error getting current location:", error);
-        setIsLoading(false); // Stop loading on error
-      });
-  }, []);
+  // useEffect(() => {
+  //   getCurrentLocation()
+  //     .then(({ latitude, longitude }) => {
+  //       fetchWeatherData(latitude, longitude)
+  //         .then((data) => {
+  //           setWeatherData(data.current);
+  //           setLocationData(data.location);
+  //           setIsLoading(false); // Data has loaded, stop loading
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error fetching weather data:", error);
+  //           setIsLoading(false); // Stop loading on error
+  //         });
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error getting current location:", error);
+  //       setIsLoading(false); // Stop loading on error
+  //     });
+  // }, []);
 
   return (
     <LinearGradient
@@ -44,7 +44,7 @@ const Dashboard = () => {
             <ShimmerPlaceholder style={styles.shimmerText} />
           ) : (
             <Text style={styles.dashboard_up_text2}>
-              {locationData.localtime.split(" ")[0]}
+              {/* {locationData.localtime.split(" ")[0]} */}
             </Text>
           )}
         </View>
@@ -52,7 +52,9 @@ const Dashboard = () => {
         {isLoading ? (
           <ShimmerPlaceholder style={styles.shimmerText} />
         ) : (
-          <Text style={styles.dashboard_temp}>{weatherData.temp_c}°C</Text>
+          <Text style={styles.dashboard_temp}>
+            {/* {weatherData.temp_c}°C */}
+            </Text>
         )}
 
         <View
