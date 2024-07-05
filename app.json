@@ -11,9 +11,12 @@
       "resizeMode": "contain",
       "backgroundColor": "#FFF9E9"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "y"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,7 +32,9 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/poppins.ttf"]
+          "fonts": [
+            "./assets/fonts/poppins.ttf"
+          ]
         }
       ]
     ]
