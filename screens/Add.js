@@ -14,6 +14,7 @@ import { insertDiary } from "../constants/Database";
 import { useNavigation } from "@react-navigation/native";
 import { DContexts } from "../contexts/DContexts";
 import SecureStoreModel from "../constants/SecureStoreModel";
+import SpeechToText from "../components/Voice";
 export default function Add() {
   SecureStoreModel.itemExists("myKey").then((exists) => {
     console.log(`Does "myKey" exist? ${exists}`);
@@ -80,8 +81,17 @@ useEffect(()=>{
   //Checking Tab 
 if(routeName=='mic'){
 setVoiceMode(true)
+
 }
+
 },[])
+useEffect(()=>{
+  if(changedsomething){
+    console.log("CHANGES ",changedsomething)
+    onChangeText(changedsomething.toString())
+    
+  }
+},[changedsomething])
   return (
     <ScrollView style={css.container}>
       <SafeAreaView>
@@ -114,11 +124,17 @@ setVoiceMode(true)
           />
         </View>
       </View>:
-      // Temporary wave.gif extension when mic is pressed
+      <>
+              <SpeechToText/>
+
       <View style={{flex:1,alignSelf:'center',justifyContent:'center',marginVertical:'50%'}}>
         <Image source={require('../assets/soundBar.gif')}
-        style={{width:50,height:50}} />
-        </View>}
+        style={{width:50,height:50,bottom:'90%'}} />
+        </View>
+</>        
+        
+        
+        }
       </SafeAreaView>
     </ScrollView>
   );
