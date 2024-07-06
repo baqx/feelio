@@ -1,22 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, Image, Pressable, View, Text, ScrollView } from 'react-native';
-import Voice from '@react-native-voice/voice';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { DContexts } from '../contexts/DContexts';
-
+import React, { useContext, useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Image,
+  Pressable,
+  View,
+  Text,
+  ScrollView,
+} from "react-native";
+import Voice from "@react-native-voice/voice";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { DContexts } from "../contexts/DContexts";
 
 export default function SpeechToText() {
   const [speechStarted, setSpeechStarted] = useState(false);
-    const [results, setResults] = useState([]); 
+  const [results, setResults] = useState([]);
   const [date, setDate] = useState("");
-  const [addedNote,setAddedNote]=useState(false)
+  const [addedNote, setAddedNote] = useState(false);
   const { setChangedSomething } = useContext(DContexts);
 
-useEffect(()=>{
-if(results){
-    setChangedSomething(results)
-}
-},[results])
+  useEffect(() => {
+    if (results) {
+      setChangedSomething(results);
+    }
+  }, [results]);
   const startSpeech = async () => {
     try {
       await Voice.start("en-US");
@@ -34,7 +40,6 @@ if(results){
       setSpeechStarted(false);
       setDate("");
       setResults([]);
-
     } catch (error) {
       console.error("Error stopping speech recognition: ", error);
     }
@@ -51,7 +56,7 @@ if(results){
   };
 
   useEffect(() => {
-   Voice.onSpeechResults = onSpeechResults;
+    Voice.onSpeechResults = onSpeechResults;
     Voice.onSpeechError = onSpeechError;
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
@@ -60,8 +65,10 @@ if(results){
 
   return (
     <SafeAreaView style={styles.container}>
-         <Text style={styles.title}>Save and Organize your notes</Text>
-         <Text style={{alignSelf:'flex-start',paddingLeft:50}}>Today's notes: </Text>
+      <Text style={styles.title}>Save and Organize your notes</Text>
+      <Text style={{ alignSelf: "flex-start", paddingLeft: 50 }}>
+        Today's notes:{" "}
+      </Text>
 
       <View style={styles.card}>
         {date ? <Text style={styles.heading}>Date: {date}</Text> : null}
@@ -79,8 +86,7 @@ if(results){
               style={styles.buttonImage}
               source={require("../../assets/images/microphone.png")}
             /> */}
-                        <Text >Start</Text>
-
+            <Text>Start</Text>
           </Pressable>
         ) : (
           <Pressable onPress={handleStop}>
@@ -88,8 +94,7 @@ if(results){
               style={styles.buttonImage}
               source={require("../../assets/images/stop.png")}
             /> */}
-                        <Text >stop</Text>
-
+            <Text>stop</Text>
           </Pressable>
         )}
         {/* <CustomModal/> */}
@@ -101,36 +106,36 @@ if(results){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   card: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: 20,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderWidth: 1,
-    borderColor: 'grey',
-    width: '80%',
+    borderColor: "grey",
+    width: "80%",
     paddingHorizontal: 40,
-    paddingBottom:20,
+    paddingBottom: 20,
     borderRadius: 10,
     maxHeight: 200,
-    minHeight:200, 
-    overflow: 'hidden', 
+    minHeight: 200,
+    overflow: "hidden",
   },
   heading: {
-    color: 'red',
+    color: "red",
     marginBottom: 10,
   },
   scrollView: {
-    width: '100%',
+    width: "100%",
     marginTop: 10,
   },
   buttonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 20,
   },
   buttonImage: {
@@ -140,9 +145,8 @@ const styles = StyleSheet.create({
   title: {
     gap: 8,
     marginBottom: 8,
-    fontFamily:'Times Roman',
-    fontWeight:'bold',
-    fontSize:24,
-    paddingHorizontal:20
+    fontWeight: "bold",
+    fontSize: 24,
+    paddingHorizontal: 20,
   },
 });

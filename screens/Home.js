@@ -115,7 +115,7 @@ export default function Home() {
             <TouchableOpacity onPress={changeTheme}>
               <Ionicons
                 name="moon-outline"
-                style={{ margin: 10, fontSize: 30 }}
+                style={{ margin: 10, fontSize: 25 }}
                 color={primarycolor}
               />
             </TouchableOpacity>
@@ -123,7 +123,7 @@ export default function Home() {
             <TouchableOpacity onPress={changeTheme}>
               <Ionicons
                 name="sunny"
-                style={{ margin: 10, fontSize: 30 }}
+                style={{ margin: 10, fontSize: 25 }}
                 color={primarycolor}
                 onpress={changeTheme}
               />
@@ -187,11 +187,11 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   topnav: {
-    padding: 10,
+    padding: 5,
     borderRadius: 10,
-    margin: 20,
-    marginTop: 30,
-    marginBottom: 15,
+    margin: 10,
+    marginTop: 10,
+    marginBottom: 3,
     flexDirection: "row",
     justifyContent: "space-between",
   },

@@ -18,9 +18,9 @@ export default function ChipNav({ name, active }) {
 }
 const styles = StyleSheet.create({
   activeButton: {
-    padding: 10,
+    padding: 8,
     paddingHorizontal: 20,
-    margin: 7,
+    margin: 5,
     marginTop: 5,
     borderRadius: 15,
     color: "white",
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
     minWidth: 90,
   },
   mtbtn: {
-    padding: 10,
+    padding: 8,
     paddingHorizontal: 20,
-    margin: 7,
+    margin: 5,
     marginTop: 5,
     borderRadius: 15,
     color: "white",

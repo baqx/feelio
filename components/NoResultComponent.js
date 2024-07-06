@@ -10,8 +10,8 @@ export default function NoResultComponent() {
     <View style={css.noresdiv}>
       <Ionicons
         name="balloon-outline"
-        size={200}
-        style={{ marginBottom: 10 }}
+        size={100}
+        style={{ marginBottom: 2 }}
         color={primarycolor}
       />
       <Text style={css.noresdiv_err}>There are no diaries yet!</Text>

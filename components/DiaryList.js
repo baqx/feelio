@@ -59,7 +59,7 @@ export default function ({ id, title, timestamp }) {
       style={{ backgroundColor: cardcolor, ...styles.dlist }}
     >
       <View style={{ flex: 0.2 }}>
-        <Ionicons name="book-sharp" size={50} color={primarycolor} />
+        <Ionicons name="book-sharp" size={35} color={primarycolor} />
       </View>
       <View style={{ flex: 0.8, flexDirection: "column" }}>
         <Text style={{ color: txtcolor, ...styles.dlistTop }}>
@@ -69,7 +69,7 @@ export default function ({ id, title, timestamp }) {
       </View>
 
       <View style={{ justifyContent: "center" }}>
-        <Ionicons name="chevron-forward" size={24} color="grey" />
+        <Ionicons name="chevron-forward" size={20} color="grey" />
       </View>
     </TouchableOpacity>
   );
@@ -77,7 +77,7 @@ export default function ({ id, title, timestamp }) {
 
 const styles = StyleSheet.create({
   dlist: {
-    margin: 18,
+    margin: 14,
     padding: 15,
     marginBottom: 5,
     borderRadius: 20,
@@ -87,11 +87,11 @@ const styles = StyleSheet.create({
   dlistTop: {
     color: "grey",
     fontSize: 13,
-    letterSpacing: 2,
+    letterSpacing: 1,
     fontFamily: "Poppins",
   },
   dlistMain: {
-    fontWeight: "bold",
-    fontSize: 19,
+    fontWeight: "600",
+    fontSize: 17,
   },
 });

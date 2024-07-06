@@ -19,8 +19,8 @@ export default function Yearbtn({ year, active }) {
 }
 const styles = StyleSheet.create({
   yrbtn: {
-    padding: 20,
-    margin: 7,
+    padding: 15,
+    margin: 5,
     marginTop: 5,
     borderRadius: 15,
     color: "white",
@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
     maxHeight: 80,
   },
   yrbtn_o: {
-    padding: 20,
-    margin: 7,
-    marginTop: 5,
+    padding: 15,
+    margin: 5,
+    marginTop: 2,
     borderRadius: 15,
     color: "white",
     justifyContent: "space-between",
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   yrbtn_yr: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
   },
   yrbtn_mem: {

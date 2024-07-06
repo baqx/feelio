@@ -35,9 +35,9 @@ const useStyles = () => {
       margin: 5,
     },
     noresdiv: {
-      margin: 15,
+      margin: 4,
       backgroundColor: bgcolor,
-      padding: 15,
+      padding: 8,
       justifyContent: "center",
       alignItems: "center",
     },

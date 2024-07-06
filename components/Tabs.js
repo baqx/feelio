@@ -26,10 +26,11 @@ export default function HomeTabs() {
             marginLeft: 10,
             elevation: 10,
             borderRadius: 15,
-            height: 70,
+            height: 50,
             backgroundColor: cardcolor,
             borderTopWidth: 0,
           },
+
         }}
       >
         <Tab.Screen
@@ -38,7 +39,7 @@ export default function HomeTabs() {
           options={{
             tabBarLabel: "Home",
             tabBarIcon: ({ color, size }) => (
-              <Feather name="home" color={color} size={size} />
+              <Feather name="home" color={color} size={20} />
             ),
           }}
         />
@@ -51,8 +52,8 @@ export default function HomeTabs() {
               <View
                 style={{
                   top: -30,
-                  width: 70,
-                  height: 70,
+                  width: 50,
+                  height: 50,
                   borderRadius: 35,
                   backgroundColor: primarycolor,
                   justifyContent: "center",
@@ -60,7 +61,7 @@ export default function HomeTabs() {
                   elevation: 10,
                 }}
               >
-                <Ionicons name="pencil" color="#ffffff" size={size} />
+                <Ionicons name="pencil" color="#ffffff" size={20} />
               </View>
             ),
           }}
@@ -74,8 +75,8 @@ export default function HomeTabs() {
               <View
                 style={{
                   top: -30,
-                  width: 70,
-                  height: 70,
+                  width: 50,
+                  height: 50,
                   borderRadius: 35,
                   backgroundColor: primarycolor,
                   justifyContent: "center",
@@ -83,7 +84,7 @@ export default function HomeTabs() {
                   elevation: 10,
                 }}
               >
-                <Ionicons name="mic" color="#ffffff" size={size} />
+                <Ionicons name="mic" color="#ffffff" size={20} />
               </View>
             ),
           }}
@@ -95,7 +96,7 @@ export default function HomeTabs() {
           options={{
             tabBarLabel: "Settings",
             tabBarIcon: ({ color, size }) => (
-              <Feather name="settings" color={color} size={size} />
+              <Feather name="settings" color={color} size={20} />
             ),
           }}
         />

@@ -80,9 +80,9 @@ const Dashboard = () => {
 const styles = StyleSheet.create({
   dashboard: {
     padding: 5,
-    margin: 25,
+    margin: 10,
     marginTop: 10,
-    borderRadius: 20,
+    borderRadius: 10,
     color: "white",
     justifyContent: "space-between",
     elevation: 10,
