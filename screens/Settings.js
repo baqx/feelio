@@ -6,21 +6,51 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  I18nManager,
+  Alert,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import useStyles from "../constants/styles";
 import CircularChip from "../components/CircularChip";
 import { useNavigation } from "@react-navigation/native";
 import { DContexts } from "../contexts/DContexts";
+import SecureStoreModel from "../constants/SecureStoreModel";
+
 export default function Settings() {
   const css = useStyles();
   const { primarycolor } = useContext(DContexts);
   const navigation = useNavigation();
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = async (lang) => {
+    if (i18n.language === lang) return;
+
+    try {
+      await i18n.changeLanguage(lang);
+      await SecureStoreModel.saveItem("language", lang);
+
+      const isRtl = lang === "ar";
+      if (I18nManager.isRTL !== isRtl) {
+        I18nManager.allowRTL(isRtl);
+        I18nManager.forceRTL(isRtl);
+
+        Alert.alert(t("restartLayoutTitle"), t("restartLayoutMessage"), [
+          { text: t("ok") },
+        ]);
+      }
+    } catch (error) {
+      console.error("Failed to change language:", error);
+    }
+  };
+
   return (
     <ScrollView style={css.container}>
       <SafeAreaView>
-        <Text style={css.pagetitle}>Settings</Text>
+        <Text style={css.pagetitle}>{t("settings")}</Text>
+        
+        {/* Theme Section */}
         <View style={{ padding: 10 }}>
-          <Text style={css.greytext}>Theme</Text>
+          <Text style={css.greytext}>{t("theme")}</Text>
         </View>
         <ScrollView
           style={styles.chsroll}
@@ -32,16 +62,18 @@ export default function Settings() {
             color="#f5f5f5"
             backcolor="#15202B"
             type="theme"
-          ></CircularChip>
+          />
           <CircularChip
             name="Light"
             color="#000"
             backcolor="#f5f5f5"
             type="theme"
-          ></CircularChip>
+          />
         </ScrollView>
+
+        {/* Color Section */}
         <View style={{ padding: 10 }}>
-          <Text style={css.greytext}>Color</Text>
+          <Text style={css.greytext}>{t("color")}</Text>
         </View>
         <ScrollView
           style={styles.chsroll}
@@ -54,41 +86,90 @@ export default function Settings() {
             backcolor="#1D9BF0"
             type="color"
             opacity="#8ecdf8"
-          ></CircularChip>
-
+          />
           <CircularChip
             name="Green"
             color="#fff"
             backcolor="#f91880"
             opacity="#fc80b9"
             type="color"
-          ></CircularChip>
+          />
           <CircularChip
             name="Blue"
             type="color"
             color="#fff"
             backcolor="#7856FF"
             opacity="#a089ff"
-          ></CircularChip>
+          />
           <CircularChip
             name="Serene"
             color="#fff"
             backcolor="#FF7A00"
             opacity="#ffa24c"
             type="color"
-          ></CircularChip>
+          />
           <CircularChip
             name="Yellow"
             color="#fff"
             backcolor="#00BA7C"
             opacity="#66d6b0"
             type="color"
-          ></CircularChip>
+          />
         </ScrollView>
+
+        {/* Language Section */}
+        <View style={{ padding: 10 }}>
+          <Text style={css.greytext}>{t("language")}</Text>
+        </View>
+        <ScrollView
+          style={styles.chsroll}
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+        >
+          <TouchableOpacity
+            style={{
+              backgroundColor: i18n.language === "en" ? primarycolor : "#f5f5f5",
+              ...styles.circle,
+              borderWidth: i18n.language === "en" ? 0 : 1,
+              borderColor: "#ccc",
+            }}
+            onPress={() => changeLanguage("en")}
+          >
+            <Text
+              style={{
+                color: i18n.language === "en" ? "white" : "black",
+                fontWeight: "bold",
+              }}
+            >
+              English
+            </Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            style={{
+              backgroundColor: i18n.language === "ar" ? primarycolor : "#f5f5f5",
+              ...styles.circle,
+              borderWidth: i18n.language === "ar" ? 0 : 1,
+              borderColor: "#ccc",
+            }}
+            onPress={() => changeLanguage("ar")}
+          >
+            <Text
+              style={{
+                color: i18n.language === "ar" ? "white" : "black",
+                fontWeight: "bold",
+              }}
+            >
+              العربية
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
+
+        {/* Security / PIN section */}
         <TouchableOpacity onPress={() => navigation.navigate("EditPin")}>
           <View style={{ backgroundColor: primarycolor, ...styles.cta }}>
             <Text style={{ color: "white", fontWeight: "900" }}>
-              Change Pin
+              {t("changePinBtn")}
             </Text>
           </View>
         </TouchableOpacity>
@@ -96,6 +177,7 @@ export default function Settings() {
     </ScrollView>
   );
 }
+
 const styles = StyleSheet.create({
   chsroll: {
     padding: 10,
@@ -104,9 +186,20 @@ const styles = StyleSheet.create({
     margin: 15,
     justifyContent: "center",
     alignItems: "center",
-
-    color: "#fff",
     padding: 20,
     borderRadius: 15,
+  },
+  circle: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    margin: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
   },
 });

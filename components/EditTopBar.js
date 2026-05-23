@@ -2,11 +2,14 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { DContexts } from "../contexts/DContexts";
 import useStyles from "../constants/styles";
+
 export default function EditTopBar({ acton }) {
   const { primarycolor } = useContext(DContexts);
   const navigation = useNavigation();
+  const { t } = useTranslation();
   css = useStyles();
 
   return (
@@ -18,12 +21,12 @@ export default function EditTopBar({ acton }) {
         <Ionicons name="chevron-back" size={25} color={primarycolor} />
       </TouchableOpacity>
       <View style={styles.atp_icon}>
-        <Text style={{ ...css.txt, ...styles.atp_icon_text1 }}>Edit</Text>
+        <Text style={{ ...css.txt, ...styles.atp_icon_text1 }}>{t("edit")}</Text>
       </View>
       <TouchableOpacity onPress={acton}>
         <View style={styles.atp_btn}>
           <Text style={{ color: primarycolor, ...styles.atp_icon_text }}>
-            Finish
+            {t("finish")}
           </Text>
         </View>
       </TouchableOpacity>

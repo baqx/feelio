@@ -8,7 +8,9 @@ import {
   StyleSheet,
   Image
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import useStyles from "../constants/styles";
+import { getEnglishMonthName } from "../localization/months";
 import AddTopBar from "../components/AddTopBar";
 import { insertDiary } from "../constants/Database";
 import { useNavigation } from "@react-navigation/native";
@@ -20,6 +22,7 @@ export default function Add() {
     console.log(`Does "myKey" exist? ${exists}`);
   });
   const css = useStyles();
+  const { t } = useTranslation();
   //Voice boolean state
   const [voiceMode,setVoiceMode]=useState(false)
   const navigation = useNavigation();
@@ -33,21 +36,7 @@ export default function Add() {
   const day = date.getDate();
   const month = date.getMonth() + 1;
   const monthIndex = date.getMonth();
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const monthName = monthNames[monthIndex];
+  const monthName = getEnglishMonthName(monthIndex);
   const year = date.getFullYear();
   const unixTimestampMillis = date.getTime();
   const unixTimestampSeconds = Math.floor(unixTimestampMillis / 1000);
@@ -99,23 +88,23 @@ useEffect(()=>{
         {/* Adding new view when Voice is present */}
      {!voiceMode?
         <View style={{ padding: 10 }}>
-        <Text style={css.greytext}>Title</Text>
+        <Text style={css.greytext}>{t("title")}</Text>
         <TextInput
           style={{ ...css.txt, ...styles.title_input }}
           onChangeText={onChangeTitle}
           value={text}
-          placeholder="Enter your title"
+          placeholder={t("enterTitlePlaceholder")}
           autoFocus={true}
           placeholderTextColor={txtcolor}
         />
-        <Text style={css.greytext}>Text</Text>
+        <Text style={css.greytext}>{t("text")}</Text>
         <View>
           <TextInput
             editable
             multiline
             numberOfLines={10}
             maxLength={10000}
-            placeholder="How are you feeling?"
+            placeholder={t("feelingPlaceholder")}
             onChangeText={(text) => onChangeText(text)}
             value={value}
             style={{ ...css.txt, padding: 15 }}

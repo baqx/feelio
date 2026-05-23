@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import SecureStoreModel from "../constants/SecureStoreModel";
 import { DContexts } from "../contexts/DContexts";
 import useStyles from "../constants/styles";
@@ -18,6 +19,7 @@ const EditUsername = () => {
   const { txtcolor } = useContext(DContexts);
   const { primarycolor } = useContext(DContexts);
   const { setMyUname } = useContext(DContexts);
+  const { t } = useTranslation();
   const handlePress = () => {
     SecureStoreModel.saveItem("username", uname);
     setMyUname(uname);
@@ -32,20 +34,20 @@ const EditUsername = () => {
         barStyle="light-content"
       />
       <View style={styles.container}>
-        <Text style={{ fontSize: 26, fontWeight: 800 }}>Enter a nickname</Text>
-        <Text style={{ fontSize: 20, fontWeight: 400, color: "grey" }}>
-          You can only change this one time!
+        <Text style={{ fontSize: 26, fontWeight: "800" }}>{t("enterNickname")}</Text>
+        <Text style={{ fontSize: 20, fontWeight: "400", color: "grey" }}>
+          {t("changeOneTime")}
         </Text>
         <TextInput
           style={{ ...css.txt, ...styles.input }}
           onChangeText={setUname}
           value={uname}
-          placeholder="Enter your nickname"
+          placeholder={t("enterNicknamePlaceholder")}
           placeholderTextColor={txtcolor}
           autoFocus={true}
         />
         <TouchableOpacity style={styles.btn} onPress={handlePress}>
-          <Text style={{ color: "white" }}>Proceed</Text>
+          <Text style={{ color: "white" }}>{t("proceed")}</Text>
         </TouchableOpacity>
       </View>
     </>

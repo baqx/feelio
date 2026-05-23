@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, Text, StyleSheet, StatusBar } from "react-native";
+import { useTranslation } from "react-i18next";
 import DialPad from "../components/DialPad";
 import SecureStoreModel from "../constants/SecureStoreModel";
 import { DContexts } from "../contexts/DContexts";
@@ -10,6 +11,7 @@ const CreatePin = () => {
   const css = useStyles();
   const { bgcolor } = useContext(DContexts);
   const { primarycolor } = useContext(DContexts);
+  const { t } = useTranslation();
   // Handle button press
   const handlePress = (value) => {
     if (value === "backspace") {
@@ -47,7 +49,7 @@ const CreatePin = () => {
       />
       <View style={{ backgroundColor: bgcolor, ...styles.container }}>
         <Text style={{ ...css.txt, ...styles.inputText }}>
-          Create a 4-digit PIN for Feelio:
+          {t("createPin")}
         </Text>
         <Text style={{ ...styles.pin, ...css.txt }}>
           {"*".repeat(pin.length)}

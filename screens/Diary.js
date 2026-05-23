@@ -7,6 +7,7 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import useStyles from "../constants/styles";
 import DiaryTopBar from "../components/DiaryTopBar";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -16,6 +17,7 @@ export default function Diary() {
   const navigation = useNavigation();
   const route = useRoute();
   const diaryid = route.params.id;
+  const { t } = useTranslation();
   console.log(diaryid);
   const [diary, setDiary] = useState([]);
   const [title, setTitle] = useState("");
@@ -54,7 +56,7 @@ export default function Diary() {
         <DiaryTopBar acton={() => goToEdit(diaryid)} diaryid={diaryid} />
         <View style={{ margin: 15 }}>
           <Text style={css.greytext}>
-            {day}, {month} {year}
+            {day}, {month ? t(month.toLowerCase()) : ""} {year}
           </Text>
           <Text style={{ ...css.txt, ...styles.title }}>{title}</Text>
           <Text style={{ ...css.txt, ...styles.content }}>{content}</Text>
