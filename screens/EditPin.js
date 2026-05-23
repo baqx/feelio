@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { useTranslation } from "react-i18next";
 import DialPad from "../components/DialPad";
 import SecureStoreModel from "../constants/SecureStoreModel";
 import { DContexts } from "../contexts/DContexts";
@@ -12,6 +13,7 @@ const EditPin = () => {
   const css = useStyles();
   const { bgcolor } = useContext(DContexts);
   const navigation = useNavigation();
+  const { t } = useTranslation();
   // Handle button press
   const handlePress = (value) => {
     if (value === "backspace") {
@@ -38,7 +40,7 @@ const EditPin = () => {
     SecureStoreModel.updateItem("pin", pin);
 
     navigation.navigate("Home");
-    alert("You have changed your pin successfully!");
+    Alert.alert(t("success"), t("changePinSuccess"));
   };
 
   return (
@@ -51,7 +53,7 @@ const EditPin = () => {
       </TouchableOpacity>
 
       <Text style={{ ...css.txt, ...styles.inputText }}>
-        Update your feelio pin:
+        {t("updatePin")}
       </Text>
       <Text style={{ ...styles.pin, ...css.txt }}>
         {"*".repeat(pin.length)}

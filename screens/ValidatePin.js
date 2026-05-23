@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { View, Text, StyleSheet, Alert, StatusBar } from "react-native";
+import { useTranslation } from "react-i18next";
 import DialPad from "../components/DialPad";
 import SecureStoreModel from "../constants/SecureStoreModel";
 import { useNavigation } from "@react-navigation/native";
@@ -13,6 +14,7 @@ const ValidatePin = () => {
   const css = useStyles();
   const { bgcolor } = useContext(DContexts);
   const { primarycolor } = useContext(DContexts);
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchPin = async () => {
       const mpin = await SecureStoreModel.getItem("pin");
@@ -48,7 +50,7 @@ const ValidatePin = () => {
       // Example PIN for demonstration purposes
       navigation.navigate("HomeTabs");
     } else {
-      Alert.alert("Failure", "Invalid PIN. Try again.");
+      Alert.alert(t("failure"), t("invalidPin"));
       // Clear the PIN after unsuccessful authentication
       setPin("");
     }
@@ -63,7 +65,7 @@ const ValidatePin = () => {
       />
       <View style={{ backgroundColor: bgcolor, ...styles.container }}>
         <Text style={{ ...css.txt, ...styles.inputText }}>
-          Enter your 4-digit Feelio PIN:
+          {t("enterPin")}
         </Text>
         <Text style={{ ...styles.pin, ...css.txt }}>
           {"*".repeat(pin.length)}
