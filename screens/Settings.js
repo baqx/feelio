@@ -34,13 +34,9 @@ export default function Settings() {
         I18nManager.allowRTL(isRtl);
         I18nManager.forceRTL(isRtl);
 
-        Alert.alert(
-          lang === "ar" ? "تغيير اتجاه التطبيق" : "Change Layout Direction",
-          lang === "ar"
-            ? "يرجى إعادة تشغيل التطبيق لتطبيق اتجاه اليمين إلى اليسار (RTL) بشكل صحيح."
-            : "Please restart the app to apply the Left-to-Right (LTR) layout correctly.",
-          [{ text: lang === "ar" ? "موافق" : "OK" }]
-        );
+        Alert.alert(t("restartLayoutTitle"), t("restartLayoutMessage"), [
+          { text: t("ok") },
+        ]);
       }
     } catch (error) {
       console.error("Failed to change language:", error);
