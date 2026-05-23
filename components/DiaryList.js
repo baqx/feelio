@@ -14,7 +14,7 @@ export default function ({ id, title, timestamp }) {
   const { cardcolor } = useContext(DContexts);
   const { t } = useTranslation();
 
-  css = useStyles();
+  const css = useStyles();
   const goToDiary = (did) => {
     navigation.navigate("Diary", { id: did });
   };

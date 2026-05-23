@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { DContexts } from "../contexts/DContexts";
 
 export default function NoResultComponent() {
-  css = useStyles();
+  const css = useStyles();
   const { primarycolor } = useContext(DContexts);
   const { t } = useTranslation();
   return (

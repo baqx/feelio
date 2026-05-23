@@ -12,7 +12,7 @@ export default function DiaryTopBar({ acton, diaryid }) {
   const { setChangedSomething } = useContext(DContexts);
   const { t } = useTranslation();
   const { primarycolor } = useContext(DContexts);
-  css = useStyles();
+  const css = useStyles();
   const delDiary = async () => {
     console.log(diaryid);
     try {

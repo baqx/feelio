@@ -29,7 +29,7 @@ export default function Diary() {
   const { changedsomething } = useContext(DContexts);
   const { setChangedSomething } = useContext(DContexts);
 
-  css = useStyles();
+  const css = useStyles();
   useEffect(() => {
     getDiary(diaryid)
       .then((data) => {

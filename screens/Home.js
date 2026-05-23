@@ -65,11 +65,7 @@ export default function Home() {
         console.error("Failed to get diaries:", error);
       });
   }, [yearfilter, monthfilter, changedsomething]);
-  if (bgcolor == "#f5f5f5") {
-    lightmode = true;
-  } else {
-    lightmode = false;
-  }
+  const lightmode = bgcolor === "#f5f5f5";
   const changeTheme = () => {
     if (lightmode) {
       setbgColor("#15202B");
@@ -100,7 +96,7 @@ export default function Home() {
       />
       <ScrollView style={css.container}>
         <View style={styles.topnav}>
-          <View class="topnavuname">
+          <View>
             <Text style={{ ...styles.tpn1, ...css.txt }}>{t("goodDay")}</Text>
             <Text style={{ ...styles.tpn2, ...css.txt }}>{myuname}</Text>
           </View>

@@ -10,7 +10,7 @@ export default function EditTopBar({ acton }) {
   const { primarycolor } = useContext(DContexts);
   const navigation = useNavigation();
   const { t } = useTranslation();
-  css = useStyles();
+  const css = useStyles();
 
   return (
     <View style={styles.AddTopBar}>
