@@ -2,13 +2,15 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { deleteDiaryById } from "../constants/Database";
 import { DContexts } from "../contexts/DContexts";
 import useStyles from "../constants/styles";
+
 export default function DiaryTopBar({ acton, diaryid }) {
   const navigation = useNavigation();
   const { setChangedSomething } = useContext(DContexts);
-
+  const { t } = useTranslation();
   const { primarycolor } = useContext(DContexts);
   css = useStyles();
   const delDiary = async () => {
@@ -25,14 +27,14 @@ export default function DiaryTopBar({ acton, diaryid }) {
   };
   const showAlert = () =>
     Alert.alert(
-      "Delete Diary",
-      "Are you sure you want to delete?",
+      t("deleteDiary"),
+      t("deleteConfirm"),
       [
         {
-          text: "Cancel",
+          text: t("cancel"),
           style: "cancel",
         },
-        { text: "Yes", onPress: delDiary },
+        { text: t("yes"), onPress: delDiary },
       ],
       {
         cancelable: true,
@@ -47,13 +49,13 @@ export default function DiaryTopBar({ acton, diaryid }) {
         <Ionicons name="chevron-back" size={30} color={primarycolor} />
       </TouchableOpacity>
       <View style={styles.atp_icon}>
-        <Text style={{ ...css.txt, ...styles.atp_icon_text1 }}>Diary</Text>
+        <Text style={{ ...css.txt, ...styles.atp_icon_text1 }}>{t("diary")}</Text>
       </View>
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity onPress={acton}>
           <View style={styles.atp_btn}>
             <Text style={{ color: primarycolor, ...styles.atp_icon_text }}>
-              Edit
+              {t("edit")}
             </Text>
           </View>
         </TouchableOpacity>

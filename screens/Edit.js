@@ -7,6 +7,7 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import useStyles from "../constants/styles";
 import EditTopBar from "../components/EditTopBar";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -15,6 +16,7 @@ import { DContexts } from "../contexts/DContexts";
 
 export default function Edit() {
   const css = useStyles();
+  const { t } = useTranslation();
   const route = useRoute();
   const navigation = useNavigation();
   const diaryid = route.params.id;
@@ -62,22 +64,22 @@ export default function Edit() {
       <SafeAreaView>
         <EditTopBar acton={editDiary} />
         <View style={{ padding: 10 }}>
-          <Text style={css.greytext}>Title</Text>
+          <Text style={css.greytext}>{t("title")}</Text>
           <TextInput
             style={{ ...css.txt, ...styles.title_input }}
             onChangeText={onChangeTitle}
             value={text}
-            placeholder="Enter your title"
+            placeholder={t("enterTitlePlaceholder")}
             placeholderTextColor={txtcolor}
           />
-          <Text style={css.greytext}>Text</Text>
+          <Text style={css.greytext}>{t("text")}</Text>
           <View>
             <TextInput
               editable
               multiline
               numberOfLines={10}
               maxLength={10000}
-              placeholder="How are you feeling?"
+              placeholder={t("feelingPlaceholder")}
               onChangeText={(text) => onChangeText(text)}
               value={value}
               style={{ ...css.txt, padding: 15 }}
