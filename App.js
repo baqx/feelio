@@ -15,6 +15,9 @@ import ValidatePin from "./screens/ValidatePin";
 import EditUsername from "./screens/EditUsername";
 import EditPin from "./screens/EditPin";
 import { useFonts } from "expo-font";
+import "./localization";
+import { initLanguage } from "./localization";
+
 const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -34,6 +37,7 @@ export default function App() {
   useEffect(() => {
     const loadColors = async () => {
       try {
+        await initLanguage();
         // Define default colors
         const Deafaults = {
           primaryColor: "#7856FF",
