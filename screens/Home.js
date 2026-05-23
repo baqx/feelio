@@ -16,6 +16,11 @@ import DiaryList from "../components/DiaryList";
 import { initializeDatabase, getAllDiaries } from "../constants/Database";
 import { DContexts } from "../contexts/DContexts";
 import { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  ENGLISH_MONTH_NAMES,
+  getEnglishMonthName,
+} from "../localization/months";
 import NoResultComponent from "../components/NoResultComponent";
 import useStyles from "../constants/styles";
 import Dashboard from "../components/Dashboard";
@@ -23,21 +28,9 @@ export default function Home() {
   const date = new Date();
   const monthIndex = date.getMonth();
   const css = useStyles();
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const monthName = monthNames[monthIndex];
+  const { t } = useTranslation();
+  const monthNames = ENGLISH_MONTH_NAMES;
+  const monthName = getEnglishMonthName(monthIndex);
   const currentMonthIndex = monthNames.indexOf(monthName);
 
   // Create a new array with the current month and year first
@@ -72,11 +65,7 @@ export default function Home() {
         console.error("Failed to get diaries:", error);
       });
   }, [yearfilter, monthfilter, changedsomething]);
-  if (bgcolor == "#f5f5f5") {
-    lightmode = true;
-  } else {
-    lightmode = false;
-  }
+  const lightmode = bgcolor === "#f5f5f5";
   const changeTheme = () => {
     if (lightmode) {
       setbgColor("#15202B");
@@ -107,8 +96,8 @@ export default function Home() {
       />
       <ScrollView style={css.container}>
         <View style={styles.topnav}>
-          <View class="topnavuname">
-            <Text style={{ ...styles.tpn1, ...css.txt }}>Good day!</Text>
+          <View>
+            <Text style={{ ...styles.tpn1, ...css.txt }}>{t("goodDay")}</Text>
             <Text style={{ ...styles.tpn2, ...css.txt }}>{myuname}</Text>
           </View>
           {lightmode ? (

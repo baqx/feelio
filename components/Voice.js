@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   StyleSheet,
   Image,
@@ -17,6 +18,7 @@ export default function SpeechToText() {
   const [date, setDate] = useState("");
   const [addedNote, setAddedNote] = useState(false);
   const { setChangedSomething } = useContext(DContexts);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     if (results) {
@@ -25,7 +27,8 @@ export default function SpeechToText() {
   }, [results]);
   const startSpeech = async () => {
     try {
-      await Voice.start("en-US");
+      const locale = i18n.language === "ar" ? "ar-SA" : "en-US";
+      await Voice.start(locale);
       setSpeechStarted(true);
       const today = new Date();
       setDate(today.toLocaleDateString());
@@ -65,13 +68,17 @@ export default function SpeechToText() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Save and Organize your notes</Text>
+      <Text style={styles.title}>{t("saveOrganize")}</Text>
       <Text style={{ alignSelf: "flex-start", paddingLeft: 50 }}>
-        Today's notes:{" "}
+        {t("todayNotes")}{" "}
       </Text>
 
       <View style={styles.card}>
-        {date ? <Text style={styles.heading}>Date: {date}</Text> : null}
+        {date ? (
+          <Text style={styles.heading}>
+            {t("dateLabel")}: {date}
+          </Text>
+        ) : null}
         <ScrollView style={styles.scrollView}>
           {results.map((result, index) => (
             <Text key={index}>{result}</Text>
@@ -86,7 +93,7 @@ export default function SpeechToText() {
               style={styles.buttonImage}
               source={require("../../assets/images/microphone.png")}
             /> */}
-            <Text>Start</Text>
+            <Text>{t("start")}</Text>
           </Pressable>
         ) : (
           <Pressable onPress={handleStop}>
@@ -94,7 +101,7 @@ export default function SpeechToText() {
               style={styles.buttonImage}
               source={require("../../assets/images/stop.png")}
             /> */}
-            <Text>stop</Text>
+            <Text>{t("stop")}</Text>
           </Pressable>
         )}
         {/* <CustomModal/> */}

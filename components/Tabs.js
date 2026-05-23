@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
 import Add from "../screens/Add";
@@ -12,6 +13,7 @@ export default function HomeTabs() {
   const { primarycolor } = useContext(DContexts);
   const { bgcolor } = useContext(DContexts);
   const { cardcolor } = useContext(DContexts);
+  const { t } = useTranslation();
   return (
     <View style={{ backgroundColor: bgcolor, flex: 1 }}>
       <Tab.Navigator
@@ -37,7 +39,7 @@ export default function HomeTabs() {
           name="Home"
           component={Home}
           options={{
-            tabBarLabel: "Home",
+            tabBarLabel: t("homeTab"),
             tabBarIcon: ({ color, size }) => (
               <Feather name="home" color={color} size={20} />
             ),
@@ -47,7 +49,7 @@ export default function HomeTabs() {
           name="Add"
           component={Add}
           options={{
-            tabBarLabel: "Add",
+            tabBarLabel: t("addTab"),
             tabBarIcon: ({ size }) => (
               <View
                 style={{
@@ -70,7 +72,7 @@ export default function HomeTabs() {
           name="mic"
           component={Add}
           options={{
-            tabBarLabel: "Add",
+            tabBarLabel: t("addTab"),
             tabBarIcon: ({ size }) => (
               <View
                 style={{
@@ -94,7 +96,7 @@ export default function HomeTabs() {
           name="settings"
           component={Settings}
           options={{
-            tabBarLabel: "Settings",
+            tabBarLabel: t("settingsTab"),
             tabBarIcon: ({ color, size }) => (
               <Feather name="settings" color={color} size={20} />
             ),

@@ -1,20 +1,23 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { DContexts } from "../contexts/DContexts";
 import useStyles from "../constants/styles";
+
 export default function AddTopBar({ acton }) {
   const { primarycolor } = useContext(DContexts);
-  css = useStyles();
+  const { t } = useTranslation();
+  const css = useStyles();
   return (
     <View style={styles.AddTopBar}>
       <View style={styles.atp_icon}></View>
       <View style={styles.atp_icon}>
-        <Text style={{ ...css.txt, ...styles.atp_icon_text1 }}>New Diary</Text>
+        <Text style={{ ...css.txt, ...styles.atp_icon_text1 }}>{t("newDiary")}</Text>
       </View>
       <TouchableOpacity onPress={acton}>
         <View style={styles.atp_btn}>
           <Text style={{ color: primarycolor, ...styles.atp_icon_text }}>
-            Save
+            {t("save")}
           </Text>
         </View>
       </TouchableOpacity>

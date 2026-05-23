@@ -1,9 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import { DContexts } from "../contexts/DContexts";
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
+
 export default function ChipNav({ name, active }) {
   const { primarycolor } = useContext(DContexts);
   const { opacitycolor } = useContext(DContexts);
+  const { t } = useTranslation();
   return (
     <View
       style={
@@ -12,7 +15,7 @@ export default function ChipNav({ name, active }) {
           : { backgroundColor: opacitycolor, ...styles.mtbtn }
       }
     >
-      <Text style={styles.month_name}>{name}</Text>
+      <Text style={styles.month_name}>{t(name.toLowerCase())}</Text>
     </View>
   );
 }

@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import react, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { DContexts } from "../contexts/DContexts";
 
 import SecureStoreModel from "../constants/SecureStoreModel";
@@ -12,6 +13,7 @@ export default function CircularChip({
   type,
   opacity,
 }) {
+  const { t } = useTranslation();
   const { setOpacityColor } = useContext(DContexts);
   const { setPrimaryColor } = useContext(DContexts);
   const { setbgColor } = useContext(DContexts);
@@ -46,7 +48,7 @@ export default function CircularChip({
         style={{ backgroundColor: backcolor, ...styles.circle }}
         onPress={changeTheme}
       >
-        <Text style={{ color: color }}>{name}</Text>
+        <Text style={{ color: color }}>{t(name.toLowerCase())}</Text>
       </TouchableOpacity>
     );
   } else if (type == "color") {

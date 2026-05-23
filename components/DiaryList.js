@@ -1,17 +1,20 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { DContexts } from "../contexts/DContexts";
 import React, { useContext } from "react";
 import useStyles from "../constants/styles";
+import { getEnglishMonthName } from "../localization/months";
 
 export default function ({ id, title, timestamp }) {
   const navigation = useNavigation();
   const { primarycolor } = useContext(DContexts);
   const { txtcolor } = useContext(DContexts);
   const { cardcolor } = useContext(DContexts);
+  const { t } = useTranslation();
 
-  css = useStyles();
+  const css = useStyles();
   const goToDiary = (did) => {
     navigation.navigate("Diary", { id: did });
   };
@@ -22,22 +25,7 @@ export default function ({ id, title, timestamp }) {
   const monthIndex = date.getMonth();
   const year = date.getFullYear();
 
-  // Map month index to month name
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const month = monthNames[monthIndex];
+  const month = t(getEnglishMonthName(monthIndex).toLowerCase());
 
   // Extract hour and minute
   let hour = date.getHours(); // Hour in 24-hour format (0-23)
