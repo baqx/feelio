@@ -50,5 +50,11 @@
   "september": "سبتمبر",
   "october": "أكتوبر",
   "november": "نوفمبر",
-  "december": "ديسمبر"
+  "december": "ديسمبر",
+  "restartLayoutTitle": "تغيير اتجاه التطبيق",
+  "restartLayoutMessage": "يرجى إعادة تشغيل التطبيق لتطبيق تغيير اتجاه الواجهة بشكل صحيح.",
+  "ok": "موافق",
+  "homeTab": "الرئيسية",
+  "addTab": "إضافة",
+  "settingsTab": "الإعدادات"
 }

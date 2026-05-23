@@ -50,5 +50,11 @@
   "september": "September",
   "october": "October",
   "november": "November",
-  "december": "December"
+  "december": "December",
+  "restartLayoutTitle": "Change Layout Direction",
+  "restartLayoutMessage": "Please restart the app to apply the layout direction change correctly.",
+  "ok": "OK",
+  "homeTab": "Home",
+  "addTab": "Add",
+  "settingsTab": "Settings"
 }
