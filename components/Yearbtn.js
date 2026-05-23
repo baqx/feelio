@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 import { DContexts } from "../contexts/DContexts";
+
 export default function Yearbtn({ year, active }) {
   const { primarycolor } = useContext(DContexts);
   const { opacitycolor } = useContext(DContexts);
+  const { t } = useTranslation();
   return (
     <View
       style={
@@ -13,7 +16,7 @@ export default function Yearbtn({ year, active }) {
       }
     >
       <Text style={styles.yrbtn_yr}>{year}</Text>
-      <Text style={styles.yrbtn_mem}>See memories</Text>
+      <Text style={styles.yrbtn_mem}>{t("seeMemories")}</Text>
     </View>
   );
 }

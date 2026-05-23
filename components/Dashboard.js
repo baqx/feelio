@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 import ShimmerPlaceholder from "react-native-shimmer-placeholder";
 import { fetchWeatherData } from "../api/weatherAPI";
 import { getCurrentLocation } from "../utils/location";
@@ -10,6 +11,7 @@ const Dashboard = () => {
   const [locationData, setLocationData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { primarycolor, opacitycolor } = useContext(DContexts);
+  const { t } = useTranslation();
 
   // useEffect(() => {
   //   getCurrentLocation()
@@ -39,7 +41,7 @@ const Dashboard = () => {
     >
       <View style={{ justifyContent: "center", borderRadius: 10 }}>
         <View style={styles.dashboard_up}>
-          <Text style={styles.dashboard_up_text1}>Today</Text>
+          <Text style={styles.dashboard_up_text1}>{t("today")}</Text>
           {isLoading ? (
             <ShimmerPlaceholder style={styles.shimmerText} />
           ) : (
